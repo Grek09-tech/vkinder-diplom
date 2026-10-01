@@ -27,3 +27,28 @@
    ```bash
    git clone [https://github.com/ВашЛогин/vkinder-diplom.git](https://github.com/ВашЛогин/vkinder-diplom.git)
    cd vkinder-diplom
+
+   ## Схема БД
+
+```mermaid
+erDiagram
+    USERS {
+        Integer id PK
+        Integer vk_id UK
+    }
+    CANDIDATES {
+        Integer id PK
+        Integer vk_id UK
+        String first_name
+        String last_name
+        String profile_link
+    }
+    INTERACTIONS {
+        Integer id PK
+        Integer user_id FK
+        Integer candidate_id FK
+        Enum status "VIEWED, FAVORITE, BLACKLISTED"
+    }
+
+    USERS ||--o{ INTERACTIONS : "имеет"
+    CANDIDATES ||--o{ INTERACTIONS : "получает"
